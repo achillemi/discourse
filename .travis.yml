@@ -99,3 +99,4 @@ script:
         fi
       fi
     "
+  - node_modules/.bin/newman run tests/discourse.postman_collection.json -e tests/discourse.postman_environment.json
