@@ -1,10 +1,12 @@
 language: ruby
 
 branches:
-  only:
+  except:
     - master
     - beta
     - stable
+  only:
+    - testbase
 
 env:
   global:
@@ -69,6 +71,12 @@ install:
   - bash -c "if [ '$RAILS_MASTER' == '0' ]; then bundle install --without development --deployment --retry=3 --jobs=3 > /dev/null; fi"
   - bash -c "if [ '$QUNIT_RUN' == '1' ] || [ '$RUN_LINT' == '1' ]; then yarn install --dev > /dev/null; fi"
   - bash -c "if [ '$RUN_LINT' != '1' ]; then LOAD_PLUGINS=1 bundle exec rake db:create db:migrate > /dev/null; fi"
+  - npm install newman
+
+before_script:
+  - node --version
+  - npm --version
+  - node_modules/.bin/newman --version
 
 script:
   - |
