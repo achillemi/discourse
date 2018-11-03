@@ -100,3 +100,4 @@ script:
       fi
     "
   - bundle exec rails server
+  - bundle exec rake admin:create
