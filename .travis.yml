@@ -76,7 +76,7 @@ install:
 before_script:
   - node --version
   - npm --version
-  - newman --version
+  - node_modules/.bin/newman --version
 
 script:
   - |
@@ -99,3 +99,4 @@ script:
         fi
       fi
     "
+  - bundle exec rails server
